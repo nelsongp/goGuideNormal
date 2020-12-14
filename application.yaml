@@ -1,0 +1,22 @@
+server:
+    port: 90
+swagger-port: 90
+ifly:
+    companycode: "LM"
+    programcode: "LMS"
+    username: "m-portal"
+    timeout: 40
+    queryresultservices:
+        endpoint: "http://192.168.66.81:8280/services/LmRetrieveQueryResultsServiceProxy"
+        action: "http://192.168.66.81:8280/services/LmRetrieveQueryResultsServiceProxy"
+        type: "http://www.ibsplc.com/iloyal/crmcore/querybuilder/retrievequeryresults/type/"
+        querycode: QRY1025
+        attributes:
+            partner: PARTNER
+            store: STORE
+ps-currency:
+    getCurrencies:
+        endpoint: "http://ps-currency-svc:90/ps-currency/getCurrencies/"
+        currencies:
+            COP: CO
+            

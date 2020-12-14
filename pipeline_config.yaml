@@ -1,0 +1,42 @@
+pipeline:
+  database: na
+  sonarVersion: sonarqube
+  flow: normal
+  deployment:
+    object: deploy
+    type: script
+service:
+  test:
+    enabled: true
+  language: go
+  port: 90
+  healthPort: 90
+  replicas:
+    dev: 1
+    qa: 1
+    qas: 1
+    uat: 1
+    hotfix: 1
+    prd: 1
+  resource:
+    request:
+      dev: 50m
+      qa: 50m
+      qas: 50m
+      uat: 50m
+      hotfix: 50m
+      prd: 50m
+    limits:
+      dev: 1000m
+      qa: 1000m
+      qas: 1000m
+      uat: 1000m
+      hotfix: 1000m
+      prd: 1000m
+  args:
+    dev: ''
+    qa: ''
+    qas: ''
+    uat: ''
+    hotfix: ''
+    prd: ''

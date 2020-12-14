@@ -1,0 +1,110 @@
+definitions:
+  currency.Currency:
+    properties:
+      currencyCode:
+        type: string
+      rateToUSD:
+        type: number
+    type: object
+  currency.CurrencyResponse:
+    properties:
+      body:
+        items:
+          $ref: '#/definitions/currency.Currency'
+        type: array
+      code:
+        type: string
+      result:
+        type: string
+    type: object
+  rate.AccRequest:
+    properties:
+      partnerCode:
+        example: TOTCO
+        type: string
+      sender:
+        example: RBMCO
+        type: string
+      terminalID:
+        example: "0010077923"
+        type: string
+    type: object
+  rate.MilesRate:
+    properties:
+      accrualRate:
+        type: integer
+      sender:
+        type: string
+      terminalId:
+        type: string
+    type: object
+  rate.RatePerStoreResponse:
+    properties:
+      body:
+        $ref: '#/definitions/rate.MilesRate'
+        type: object
+      code:
+        type: string
+      result:
+        type: string
+    type: object
+info:
+  contact:
+    email: jose.regalado@lifemiles.com
+    name: API Support
+    url: https://www.lifemiles.dev/support
+  description: This is the documentation from lmgp-rates-svc service.
+  license: {}
+  title: Swagger lmgp-rates-svc API
+  version: "1.0"
+paths:
+  /getCurrencies:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve a list of currencies and rates to USD
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/currency.CurrencyResponse'
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      summary: Return CurrencyResponse
+      tags:
+      - Currency
+  /milesRate:
+    post:
+      consumes:
+      - application/json
+      description: Retrieve Rate Per Store Response
+      parameters:
+      - description: AccRequest
+        in: body
+        name: accRequest
+        required: true
+        schema:
+          $ref: '#/definitions/rate.AccRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/rate.RatePerStoreResponse'
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not Found
+      summary: Return RatePerStoreResponse
+      tags:
+      - AccRequest
+swagger: "2.0"

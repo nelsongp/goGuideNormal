@@ -1,0 +1,10 @@
+server:
+    port: 8988
+swagger-port: 8988
+ifly:
+    queryresultservices:
+        endpoint: "http://localhost:8280/services/LmRetrieveQueryResultsServiceProxy"
+        action: "http://localhost:8280/services/LmRetrieveQueryResultsServiceProxy"
+ps-currency:
+    getCurrencies:
+        endpoint: "http://localhost:32329/ps-currency/getCurrencies/"            
